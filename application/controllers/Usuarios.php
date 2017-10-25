@@ -5,7 +5,13 @@ if (!defined('BASEPATH'))
 
 class Usuarios extends CI_Controller {
 
+    public function formulario() {
+        $usuarioLogado = autoriza();
+        $this->load->template("usuarios/formulario");
+    }
+
     public function novo() {
+        $usuarioLogado = autoriza();
         $usuario = array(
             'nome' => $this->input->post("nome"),
             'email' => $this->input->post('email'),
@@ -13,7 +19,7 @@ class Usuarios extends CI_Controller {
         );
         $this->load->model("Usuarios_model");
         $this->Usuarios_model->insert($usuario);
-        $this->load->view("usuarios/novo");
+        $this->load->template("usuarios/novo");
     }
 
 }

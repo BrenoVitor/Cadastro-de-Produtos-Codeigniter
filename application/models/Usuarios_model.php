@@ -9,6 +9,15 @@ class Usuarios_model extends CI_Model {
         $this->db->insert('usuarios', $usuario);
     }
 
+    public function selectAll() {
+        return $this->db->get('usuarios')->result_array();
+    }
+    
+    public function selectUsuario($id){
+        $this->db->where("id",$id);
+        return $this->db->get('usuarios')->row_array();
+    }
+
     public function buscaPorEmailSenha($email, $senha) {
         $this->db->where("email", $email);
         $this->db->where("senha", $senha);
